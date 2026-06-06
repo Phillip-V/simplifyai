@@ -21,9 +21,12 @@
 <body>
 
   <nav class="navbar">
-    <div class="logo">Simplify<span>AI</span></div>
-    <p class="tagline">Making complex language clear for everyone</p>
-  </nav>
+  <div class="logo">Simplify<span>AI</span></div>
+  <div class="nav-right">
+    <span class="user-greeting">👋 <span id="user-name"></span></span>
+    <button class="logout-btn" onclick="logOut()">Log Out</button>
+  </div>
+</nav>
 
   <main class="container">
 
@@ -107,6 +110,9 @@
   <footer class="footer">
     <p>&copy; 2026 SimplifyAI &mdash; Making complex language clear for everyone &middot; Worldwide</p>
   </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.3/dist/umd/supabase.min.js"></script>
+
 
   <script src="app.js"></script>
 </body>

@@ -1,3 +1,33 @@
+// SUPABASE AUTH CHECK
+const { createClient } = supabase;
+const supabaseClient = createClient(
+  'https://xbdqrzeblcxdtdiezhnd.supabase.co',
+   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhiZHFyemVibGN4ZHRkaWV6aG5kIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA3NTA2OTMsImV4cCI6MjA5NjMyNjY5M30.2DghSB0JbSYJ-3S03FIj1uCDOOpjU9pdn4VJmk2iB58'
+);
+
+// Check if user is logged in
+async function checkAuth() {
+  const { data: { session } } = await supabaseClient.auth.getSession();
+  if (!session) {
+    window.location.href = 'login.html';
+  } else {
+    const user = session.user;
+    const name = user.user_metadata?.full_name || user.email;
+    document.getElementById('user-name').textContent = name;
+  }
+}
+
+// Logout function
+async function logOut() {
+  await supabaseClient.auth.signOut();
+  window.location.href = 'login.html';
+}
+
+checkAuth();
+
+
+
+
 // SELECT ELEMENTS
 const inputText = document.getElementById('input-text');
 const charCount = document.getElementById('char-count');
