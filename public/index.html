@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SimplifyAI</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="logo">Simplify<span>AI</span></div>
+    <p class="tagline">Making complex language clear for everyone</p>
+  </nav>
+
+  <main class="container">
+
+    <div class="hero">
+      <h1>Paste anything confusing.</h1>
+      <p>Contracts, medical reports, legal documents, technical terms — get a clear explanation instantly.</p>
+    </div>
+
+    <div class="card">
+
+      <div class="form-group">
+        <label class="label">Your text</label>
+        <textarea id="input-text" placeholder="Paste your confusing text here..."></textarea>
+        <div class="char-count" id="char-count">0 characters</div>
+      </div>
+
+      <div class="form-group">
+        <label class="label">Explanation level</label>
+        <div class="level-row">
+          <button class="level-btn" data-level="simple">🙂 Simple</button>
+          <button class="level-btn active" data-level="normal">📄 Normal</button>
+          <button class="level-btn" data-level="detailed">🔍 Detailed</button>
+        </div>
+      </div>
+
+      <button class="run-btn" id="run-btn">
+        <span class="spinner" id="spinner"></span>
+        <span id="btn-text">✨ Explain This</span>
+      </button>
+
+      <div class="error-box" id="error-box"></div>
+
+      <div class="result-header" id="result-header">
+        <span class="result-label">✅ Explanation ready</span>
+        <button class="copy-btn" id="copy-btn">Copy</button>
+      </div>
+      <div class="result-box" id="result-box"></div>
+
+    </div>
+
+    <div class="card">
+      <label class="label">Try an example</label>
+      <div class="examples">
+        <button class="example-chip">A tenancy agreement clause about quiet enjoyment and forfeiture rights</button>
+        <button class="example-chip">Patient diagnosis: acute myocardial infarction with ST-elevation</button>
+        <button class="example-chip">The indemnification clause in a software licence agreement</button>
+        <button class="example-chip">What is machine learning and how does a neural network work?</button>
+        <button class="example-chip">What does without prejudice mean in a legal letter?</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <label class="label">How it works</label>
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <div>
+            <h3>Paste your text</h3>
+            <p>Copy any confusing document, article, or term and paste it in the box above.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <div>
+            <h3>Choose your level</h3>
+            <p>Pick Simple for everyday language, Normal for clear adult explanation, or Detailed for full breakdown.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <div>
+            <h3>Get your explanation</h3>
+            <p>SimplifyAI breaks it down instantly in plain, friendly language anyone can understand.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2026 SimplifyAI &mdash; Making complex language clear for everyone &middot; Worldwide</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
