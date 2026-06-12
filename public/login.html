@@ -219,6 +219,31 @@
     }
 
     .footer-link a:hover { text-decoration: underline; }
+
+    .input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-wrapper input {
+  padding-right: 45px;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 14px;
+  background: none;
+  border: none;
+  color: #475569;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 0;
+  transition: color 0.2s;
+  line-height: 1;
+}
+
+.toggle-password:hover { color: #94a3b8; }
   </style>
 </head>
 <body>
@@ -242,10 +267,15 @@
       <input type="email" id="email" placeholder="your@email.com" />
     </div>
 
-    <div class="form-group">
-      <label>Password</label>
-      <input type="password" id="password" placeholder="Your password" />
-    </div>
+   <div class="form-group">
+  <label>Password</label>
+  <div class="input-wrapper">
+    <input type="password" id="password" placeholder="Your password" />
+    <button class="toggle-password" onclick="togglePassword('password', this)" type="button">
+      👁
+    </button>
+  </div>
+  </div>
 
     <button class="btn" id="login-btn" onclick="logIn()">
       Sign In
@@ -299,6 +329,17 @@
         window.location.href = 'index.html';
       }
     }
+
+    function togglePassword(inputId, btn) {
+  const input = document.getElementById(inputId);
+  if (input.type === 'password') {
+    input.type = 'text';
+    btn.textContent = '🙈';
+  } else {
+    input.type = 'password';
+    btn.textContent = '👁';
+  }
+}
   </script>
 </body>
 </html>
