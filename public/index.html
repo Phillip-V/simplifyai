@@ -1,119 +1,182 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-K1C84W8TYS"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-K1C84W8TYS');
-</script>
-
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>SimplifyAI</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <title>SimplifyAI — Understand Anything Instantly</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-K1C84W8TYS"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-K1C84W8TYS');
+  </script>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
+  <!-- BACKGROUND EFFECTS -->
+  <div class="bg-glow bg-glow-1"></div>
+  <div class="bg-glow bg-glow-2"></div>
+  <div class="bg-glow bg-glow-3"></div>
+
+  <!-- NAVBAR -->
   <nav class="navbar">
-  <div class="logo">Simplify<span>AI</span></div>
-  <div class="nav-right">
-    <span class="user-greeting">👋 <span id="user-name"></span></span>
-    <button class="logout-btn" onclick="logOut()">Log Out</button>
-  </div>
-</nav>
-
-  <main class="container">
-
-    <div class="hero">
-      <h1>Paste anything confusing.</h1>
-      <p>Contracts, medical reports, legal documents, technical terms — get a clear explanation instantly.</p>
-    </div>
-
-    <div class="card">
-
-      <div class="form-group">
-        <label class="label">Your text</label>
-        <textarea id="input-text" placeholder="Paste your confusing text here..."></textarea>
-        <div class="char-count" id="char-count">0 characters</div>
+    <div class="nav-left">
+      <div class="logo">
+        <div class="logo-icon">✦</div>
+        Simplify<span>AI</span>
       </div>
+    </div>
+    <div class="nav-right">
+      <div class="usage-pill">
+        <span class="usage-dot"></span>
+        <span id="remaining-count">10</span> left today
+      </div>
+      <div class="user-chip">
+        <div class="user-avatar" id="user-avatar">V</div>
+        <span id="user-name"></span>
+      </div>
+      <button class="logout-btn" onclick="logOut()">Sign out</button>
+    </div>
+  </nav>
 
-      <div class="form-group">
-        <label class="label">Explanation level</label>
-        <div class="level-row">
-          <button class="level-btn" data-level="simple">🙂 Simple</button>
-          <button class="level-btn active" data-level="normal">📄 Normal</button>
-          <button class="level-btn" data-level="detailed">🔍 Detailed</button>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-badge">✦ AI Powered Explanation Engine</div>
+    <h1 class="hero-title">
+      Understand <span class="gradient-text">anything</span><br/>instantly
+    </h1>
+    <p class="hero-subtitle">
+      Paste any confusing document, contract, medical report, or legal letter.<br/>
+      Get a clear, plain language explanation in seconds.
+    </p>
+  </section>
+
+  <!-- MAIN CARD -->
+  <main class="main-container">
+    <div class="input-card">
+
+      <!-- TEXTAREA -->
+      <div class="textarea-wrapper">
+        <textarea
+          id="input-text"
+          placeholder="Paste your confusing text here — contracts, medical reports, legal documents, technical terms..."
+        ></textarea>
+        <div class="textarea-footer">
+          <span class="char-count" id="char-count">0 characters</span>
+          <button class="clear-btn" onclick="clearText()">Clear</button>
         </div>
       </div>
 
-      <button class="run-btn" id="run-btn">
-        <span class="spinner" id="spinner"></span>
-        <span id="btn-text">✨ Explain This</span>
-      </button>
+      <!-- LEVEL SELECTOR -->
+      <div class="level-section">
+        <span class="level-label">Explanation depth</span>
+        <div class="level-pills">
+          <button class="level-pill" data-level="simple">
+            <span class="pill-icon">🙂</span> Simple
+          </button>
+          <button class="level-pill active" data-level="normal">
+            <span class="pill-icon">📄</span> Normal
+          </button>
+          <button class="level-pill" data-level="detailed">
+            <span class="pill-icon">🔍</span> Detailed
+          </button>
+        </div>
+      </div>
 
+      <!-- ACTION ROW -->
+      <div class="action-row">
+        <button class="explain-btn" id="run-btn">
+          <div class="btn-glow"></div>
+          <span class="spinner" id="spinner"></span>
+          <span id="btn-text">✦ Explain This</span>
+        </button>
+      </div>
+
+      <!-- ERROR -->
       <div class="error-box" id="error-box"></div>
 
-      <div class="result-header" id="result-header">
-        <span class="result-label">✅ Explanation ready</span>
-        <button class="copy-btn" id="copy-btn">Copy</button>
+      <!-- RESULT -->
+      <div class="result-section" id="result-section" style="display:none;">
+        <div class="result-header">
+          <div class="result-badge">
+            <span>✦</span> Explanation
+          </div>
+          <button class="copy-btn" id="copy-btn">
+            <span>Copy</span>
+          </button>
+        </div>
+        <div class="result-content" id="result-box"></div>
       </div>
-      <div class="result-box" id="result-box"></div>
 
     </div>
 
-    <div class="card">
-      <label class="label">Try an example</label>
-      <div class="examples">
-        <button class="example-chip">A tenancy agreement clause about quiet enjoyment and forfeiture rights</button>
-        <button class="example-chip">Patient diagnosis: acute myocardial infarction with ST-elevation</button>
-        <button class="example-chip">The indemnification clause in a software licence agreement</button>
-        <button class="example-chip">What is machine learning and how does a neural network work?</button>
-        <button class="example-chip">What does without prejudice mean in a legal letter?</button>
+    <!-- EXAMPLES -->
+    <div class="examples-section">
+      <p class="examples-label">Try an example</p>
+      <div class="examples-grid">
+        <button class="example-card" onclick="loadExample(this)">
+          <span class="example-icon">📋</span>
+          <span>Tenancy agreement — quiet enjoyment clause</span>
+        </button>
+        <button class="example-card" onclick="loadExample(this)">
+          <span class="example-icon">🏥</span>
+          <span>Medical diagnosis — acute myocardial infarction</span>
+        </button>
+        <button class="example-card" onclick="loadExample(this)">
+          <span class="example-icon">⚖️</span>
+          <span>Legal letter — without prejudice explained</span>
+        </button>
+        <button class="example-card" onclick="loadExample(this)">
+          <span class="example-icon">💻</span>
+          <span>What is machine learning and neural networks?</span>
+        </button>
+        <button class="example-card" onclick="loadExample(this)">
+          <span class="example-icon">📜</span>
+          <span>Software licence indemnification clause</span>
+        </button>
+        <button class="example-card" onclick="loadExample(this)">
+          <span class="example-icon">🏦</span>
+          <span>Bank loan terms — APR and compound interest</span>
+        </button>
       </div>
     </div>
 
-    <div class="card">
-      <label class="label">How it works</label>
-      <div class="steps">
-        <div class="step">
-          <div class="step-number">1</div>
-          <div>
-            <h3>Paste your text</h3>
-            <p>Copy any confusing document, article, or term and paste it in the box above.</p>
-          </div>
+    <!-- HOW IT WORKS -->
+    <div class="how-section">
+      <p class="examples-label">How it works</p>
+      <div class="how-grid">
+        <div class="how-card">
+          <div class="how-number">01</div>
+          <h3>Paste your text</h3>
+          <p>Copy any confusing document, article, report, or term and paste it in the box above.</p>
         </div>
-        <div class="step">
-          <div class="step-number">2</div>
-          <div>
-            <h3>Choose your level</h3>
-            <p>Pick Simple for everyday language, Normal for clear adult explanation, or Detailed for full breakdown.</p>
-          </div>
+        <div class="how-card">
+          <div class="how-number">02</div>
+          <h3>Choose depth</h3>
+          <p>Simple for everyday language, Normal for clear explanation, Detailed for full breakdown.</p>
         </div>
-        <div class="step">
-          <div class="step-number">3</div>
-          <div>
-            <h3>Get your explanation</h3>
-            <p>SimplifyAI breaks it down instantly in plain, friendly language anyone can understand.</p>
-          </div>
+        <div class="how-card">
+          <div class="how-number">03</div>
+          <h3>Get clarity</h3>
+          <p>SimplifyAI explains it instantly in plain, friendly language anyone can understand.</p>
         </div>
       </div>
     </div>
 
   </main>
 
+  <!-- FOOTER -->
   <footer class="footer">
-    <p>&copy; 2026 SimplifyAI &mdash; Making complex language clear for everyone &middot; Worldwide</p>
+    <div class="footer-logo">✦ SimplifyAI</div>
+    <p>Making complex language clear for everyone &middot; Worldwide</p>
+    <p class="footer-copy">&copy; 2026 SimplifyAI. All rights reserved.</p>
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.3/dist/umd/supabase.min.js"></script>
-
-
   <script src="app.js"></script>
 </body>
 </html>

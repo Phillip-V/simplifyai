@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>SimplifyAI — Login</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-K1C84W8TYS"></script>
   <script>
@@ -16,48 +16,98 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+    :root {
+      --bg: #080b14;
+      --border: rgba(255,255,255,0.08);
+      --accent: #6366f1;
+      --gradient: linear-gradient(135deg, #6366f1, #8b5cf6, #06b6d4);
+    }
+
     body {
-      font-family: "Poppins", sans-serif;
-      background: #0f1117;
-      color: #e2e8f0;
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: #f1f5f9;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       padding: 2rem 1rem;
+      overflow: hidden;
+    }
+
+    .bg-glow {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(120px);
+      opacity: 0.12;
+      pointer-events: none;
+    }
+
+    .bg-glow-1 {
+      width: 500px; height: 500px;
+      background: #6366f1;
+      top: -150px; left: -150px;
+    }
+
+    .bg-glow-2 {
+      width: 400px; height: 400px;
+      background: #8b5cf6;
+      bottom: -100px; right: -100px;
     }
 
     .logo {
-      font-size: 24px;
-      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 22px;
+      font-weight: 700;
       color: #f1f5f9;
       margin-bottom: 2rem;
-      text-align: center;
+      letter-spacing: -0.5px;
+      position: relative;
+      z-index: 1;
     }
 
-    .logo span { color: #818cf8; }
+    .logo-icon {
+      width: 34px; height: 34px;
+      background: var(--gradient);
+      border-radius: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      color: white;
+    }
+
+    .logo span { color: #a5b4fc; }
 
     .card {
-      background: #1e2130;
-      border: 1px solid #2d3148;
-      border-radius: 16px;
-      padding: 2rem;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2.5rem;
       width: 100%;
       max-width: 420px;
+      backdrop-filter: blur(20px);
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.05), 0 30px 60px rgba(0,0,0,0.5);
+      position: relative;
+      z-index: 1;
     }
 
-    .card h2 {
-      font-size: 20px;
-      font-weight: 600;
+    .card-header { margin-bottom: 2rem; }
+
+    .card-header h2 {
+      font-size: 22px;
+      font-weight: 700;
       color: #f1f5f9;
-      margin-bottom: 0.5rem;
+      letter-spacing: -0.5px;
+      margin-bottom: 6px;
     }
 
-    .card p {
-      font-size: 13px;
+    .card-header p {
+      font-size: 14px;
       color: #64748b;
-      margin-bottom: 1.75rem;
     }
 
     .form-group { margin-bottom: 1.25rem; }
@@ -65,48 +115,65 @@
     label {
       display: block;
       font-size: 12px;
+      font-weight: 500;
       color: #94a3b8;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
     }
 
     input {
       width: 100%;
-      background: #131520;
-      border: 1px solid #2d3148;
+      background: rgba(0,0,0,0.3);
+      border: 1px solid var(--border);
       border-radius: 10px;
-      color: #e2e8f0;
-      font-family: "Poppins", sans-serif;
+      color: #f1f5f9;
+      font-family: 'Inter', sans-serif;
       font-size: 14px;
-      padding: 12px 14px;
+      padding: 13px 16px;
       outline: none;
-      transition: border-color 0.2s;
+      transition: all 0.2s;
     }
 
-    input:focus { border-color: #6366f1; }
-    input::placeholder { color: #3d4466; }
+    input:focus {
+      border-color: rgba(99,102,241,0.5);
+      box-shadow: 0 0 0 3px rgba(99,102,241,0.1);
+    }
+
+    input::placeholder { color: #1e293b; }
 
     .btn {
       width: 100%;
-      padding: 13px;
-      background: #6366f1;
+      padding: 14px;
+      background: var(--gradient);
       color: white;
       border: none;
-      border-radius: 10px;
-      font-family: "Poppins", sans-serif;
+      border-radius: 12px;
+      font-family: 'Inter', sans-serif;
       font-size: 15px;
-      font-weight: 500;
+      font-weight: 600;
       cursor: pointer;
       transition: all 0.2s;
       margin-top: 0.5rem;
+      letter-spacing: -0.2px;
     }
 
-    .btn:hover { background: #4f46e5; }
-    .btn:disabled { background: #2d3148; color: #475569; cursor: not-allowed; }
+    .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 30px rgba(99,102,241,0.4);
+    }
+
+    .btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
 
     .error-box {
       display: none;
-      background: #2d1515;
-      border: 1px solid #7f1d1d;
+      background: rgba(239,68,68,0.08);
+      border: 1px solid rgba(239,68,68,0.2);
       border-radius: 10px;
       padding: 12px 16px;
       font-size: 13px;
@@ -115,16 +182,40 @@
       line-height: 1.6;
     }
 
+    .divider {
+      text-align: center;
+      margin: 1.5rem 0;
+      position: relative;
+    }
+
+    .divider::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .divider span {
+      position: relative;
+      background: #0d1117;
+      padding: 0 12px;
+      font-size: 12px;
+      color: #334155;
+    }
+
     .footer-link {
       text-align: center;
-      margin-top: 1.5rem;
       font-size: 13px;
       color: #64748b;
     }
 
     .footer-link a {
-      color: #818cf8;
+      color: #a5b4fc;
       text-decoration: none;
+      font-weight: 500;
     }
 
     .footer-link a:hover { text-decoration: underline; }
@@ -132,11 +223,19 @@
 </head>
 <body>
 
-  <div class="logo">Simplify<span>AI</span></div>
+  <div class="bg-glow bg-glow-1"></div>
+  <div class="bg-glow bg-glow-2"></div>
+
+  <div class="logo">
+    <div class="logo-icon">✦</div>
+    Simplify<span>AI</span>
+  </div>
 
   <div class="card">
-    <h2>Welcome back</h2>
-    <p>Log in to your SimplifyAI account.</p>
+    <div class="card-header">
+      <h2>Welcome back</h2>
+      <p>Sign in to your SimplifyAI account</p>
+    </div>
 
     <div class="form-group">
       <label>Email Address</label>
@@ -149,24 +248,24 @@
     </div>
 
     <button class="btn" id="login-btn" onclick="logIn()">
-      Log In
+      Sign In
     </button>
 
     <div class="error-box" id="error-box"></div>
 
+    <div class="divider"><span>or</span></div>
+
     <div class="footer-link">
-      Don't have an account? <a href="signup.html">Sign up free</a>
+      Don't have an account? <a href="signup.html">Create one free</a>
     </div>
   </div>
 
-  
-
-   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.3/dist/umd/supabase.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.3/dist/umd/supabase.min.js"></script>
   <script>
     const { createClient } = supabase;
     const supabaseClient = createClient(
       'https://xbdqrzeblcxdtdiezhnd.supabase.co',
-       'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhiZHFyemVibGN4ZHRkaWV6aG5kIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA3NTA2OTMsImV4cCI6MjA5NjMyNjY5M30.2DghSB0JbSYJ-3S03FIj1uCDOOpjU9pdn4VJmk2iB58'
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhiZHFyemVibGN4ZHRkaWV6aG5kIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA3NTA2OTMsImV4cCI6MjA5NjMyNjY5M30.2DghSB0JbSYJ-3S03FIj1uCDOOpjU9pdn4VJmk2iB58'
     );
 
     async function logIn() {
@@ -184,7 +283,7 @@
       }
 
       btn.disabled = true;
-      btn.textContent = 'Logging in...';
+      btn.textContent = 'Signing in...';
 
       const { data, error } = await supabaseClient.auth.signInWithPassword({
         email,
@@ -195,7 +294,7 @@
         errorBox.textContent = error.message;
         errorBox.style.display = 'block';
         btn.disabled = false;
-        btn.textContent = 'Log In';
+        btn.textContent = 'Sign In';
       } else {
         window.location.href = 'index.html';
       }
@@ -203,3 +302,9 @@
   </script>
 </body>
 </html>
+
+
+
+
+ 
+       
